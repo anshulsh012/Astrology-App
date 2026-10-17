@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Brand palette: dark navy base, purple depth, restrained gold accents. */
+  --color-space-950: #05070f;
+  --color-space-900: #080c1c;
+  --color-space-850: #0b1026;
+  --color-space-800: #0f1533;
+  --color-space-700: #171e46;
+  --color-nebula-600: #4c2a86;
+  --color-nebula-500: #6d3fc4;
+  --color-nebula-400: #8b5cf6;
+  --color-gold-500: #c9a227;
+  --color-gold-400: #d9b64a;
+  --color-gold-300: #e8cd7d;
+
+  --font-display: 'Playfair Display', 'Georgia', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-space-900);
+  color: #e6e8f3;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle cosmic background glows for premium feel. */
+.cosmic-bg {
+  background-image:
+    radial-gradient(ellipse 60% 50% at 15% 0%, rgb(109 63 196 / 0.28), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 10%, rgb(76 42 134 / 0.25), transparent 65%),
+    radial-gradient(ellipse 45% 35% at 50% 100%, rgb(201 162 39 / 0.08), transparent 70%);
+}
+
+.gold-text {
+  background: linear-gradient(120deg, var(--color-gold-300), var(--color-gold-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
