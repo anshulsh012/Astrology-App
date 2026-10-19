@@ -14,22 +14,36 @@ export function apiUrl(path: string): string {
 /** Thrown when the API responds with a non-2xx status. */
 export class ApiError extends Error {
   readonly status: number;
+  /** Backend `detail` payload, when the response body carried one. */
+  readonly detail: unknown;
 
-  constructor(message: string, status: number) {
+  constructor(message: string, status: number, detail: unknown = null) {
     super(message);
     this.name = 'ApiError';
     this.status = status;
+    this.detail = detail;
   }
 }
 
-/** Fetch JSON with timeout + status handling. Surfaces network errors to callers. */
-export async function fetchJson<T>(path: string, timeoutMs = 8000): Promise<T> {
+/** Fetch JSON with timeout + status handling. Supports POST/PUT/etc. */
+export async function fetchJson<T>(
+  path: string,
+  timeoutMs = 8000,
+  options?: RequestInit,
+): Promise<T> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
     const response = await fetch(apiUrl(path), {
-      headers: { Accept: 'application/json' },
+      ...options,
+      // The API is served from a different origin in development (and may be
+      // in production); session cookies are HttpOnly and must be included.
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        ...options?.headers,
+      },
       signal: controller.signal,
     });
 

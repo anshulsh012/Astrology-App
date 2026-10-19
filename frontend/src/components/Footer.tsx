@@ -103,7 +103,7 @@ export default function Footer(): ReactNode {
           <ApiStatus />
           <p className="mt-4 flex items-center gap-1.5 text-xs text-white/40">
             <Moon className="h-3.5 w-3.5" aria-hidden="true" />
-            Phase 0 — foundation only
+            Phase 1 — auth foundation
           </p>
         </div>
       </div>

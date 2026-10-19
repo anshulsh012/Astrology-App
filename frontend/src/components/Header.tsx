@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, Sparkles, X } from 'lucide-react';
+import AuthLinks from './AuthLinks';
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -45,12 +46,7 @@ export default function Header(): ReactNode {
           >
             For Astrologers
           </Link>
-          <Link
-            to="/customer"
-            className="rounded-full border border-gold-400/60 bg-gold-400/10 px-4 py-1.5 text-sm font-medium text-gold-300 transition hover:bg-gold-400/20"
-          >
-            Book Consultation
-          </Link>
+          <AuthLinks />
         </nav>
 
         <button

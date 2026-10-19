@@ -15,6 +15,8 @@ if str(BACKEND_DIR) not in sys.path:
 from app.core.config import get_settings  # noqa: E402
 from app.models.base import Base  # noqa: E402
 
+
+
 config = context.config
 
 if config.config_file_name is not None:
