@@ -1,1 +1,0 @@
-"""Core infrastructure: settings and database access."""
